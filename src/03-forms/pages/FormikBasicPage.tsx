@@ -8,7 +8,7 @@ interface FormikValues{
     email: string;
 }
 
-const FormikBasicPage = () => {
+export const FormikBasicPage = () => {
 
     const validate = ( { firstName, lastName, email }: FormikValues) => {
         const errors: FormikErrors<FormikValues> = {};
@@ -34,7 +34,9 @@ const FormikBasicPage = () => {
         return errors;
     }
 
-    const { handleChange, values, handleSubmit } = useFormik({
+    const { 
+        handleChange, touched, handleBlur,
+        values, handleSubmit, errors } = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
@@ -54,28 +56,30 @@ const FormikBasicPage = () => {
                 <label htmlFor='firstName'>First Name</label>
                 <input 
                     name="firstName"
+                    onBlur={ handleBlur }
                     onChange={ handleChange }
                     value={ values.firstName}
                 />
-                <span>First name is required</span>
+                {touched.firstName && errors.firstName && <span>{ errors.firstName }</span>}
 
                 <label htmlFor='lastName'>Last Name</label>
                 <input 
                     name="lastName"
+                    onBlur={ handleBlur }
                     onChange={ handleChange }
                     value={ values.lastName}
                 />
-                <span>Last name is required</span>
+                {touched.lastName && errors.lastName && <span>{ errors.lastName}</span>}
 
-                <label htmlFor='email  '>Email Address</label>
+                <label htmlFor='email'>Email Address</label>
                 <input 
                     name="email"
                     type="email"
+                    onBlur={ handleBlur }
                     onChange={ handleChange }
                     value={ values.email}
                 />
-                <span>Email is required</span>
-                <span>Check for an invalid email format</span>
+                {touched.email && errors.email && <span>errors.email</span> }
 
                 <button type="submit">Submit</button>
             </form>
@@ -83,4 +87,3 @@ const FormikBasicPage = () => {
     )
 }
 
-export default FormikBasicPage

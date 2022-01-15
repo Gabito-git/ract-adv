@@ -3,7 +3,7 @@ import { useForm } from '../hooks/useForm';
 
 import '../styles/styles.css';
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
 
     const { 
         name, 
@@ -73,4 +73,3 @@ const RegisterPage = () => {
     )
 }
 
-export default RegisterPage
