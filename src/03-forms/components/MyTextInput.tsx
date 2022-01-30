@@ -11,7 +11,7 @@ interface Props{
 export const MyTextInput = ({label,...props}: Props) => {
 
     const [field ] = useField( props );
-    console.log(field);  // acá está el value, onchange, onblur y el name
+    //console.log(field);  // acá está el value, onchange, onblur y el name
 
     return (
         <>
